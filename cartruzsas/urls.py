@@ -12,5 +12,4 @@ urlpatterns = patterns('',
 	url(r'^',include('cartruzsas.apps.home.urls')),
 	url(r'^',include('cartruzsas.apps.productos.urls')),
     url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
-
 )
