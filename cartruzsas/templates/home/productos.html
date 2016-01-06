@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{%block title%}
+	Productos
+{% endblock %}
+
+{%block content%}
+	<a href="{% url 'vista_agregar_producto' %}">Nuevo Producto</a>
+	<br>
+	{% if product %}
+		{%for p in product %}
+
+			Nombre = {{p.nombre}}
+			<br>	
+			Descripcion = {{p.descripcion}}
+			<br>
+			valor = {{p.precio}}
+			<br>
+			<img src="/media/{{p.imagen}}" width="200px" height="150px">
+			<img src="/media/{{p.imagen2}}" width="200px" height="150px">
+			<br>
+			<a href="/edit/product/{{p.id}}">Editar</a>
+			<br>
+		{% endfor %}
+	{% endif %}
+
+{%endblock %}

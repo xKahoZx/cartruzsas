@@ -21,14 +21,5 @@
 
 
 	<p>--------------------------------------------------------</p>
-	<img src="/media/imagenes/logo.jpg" width="300px" height="250px">
-
-	<form action="." method="POST">
-		<h4>Contactanos</h4>
-		{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Enviar">
-		<input type="reset" value="Limpiar">
-	</form>
-
+	
 {% endblock %}

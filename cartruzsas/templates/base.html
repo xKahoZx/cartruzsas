@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>{%block title%}{% endblock%}</title>
-</head>
-<body>
+	<head>
 
-	{%block content %}
-	{%endblock%}
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <link type="text/css" rel="stylesheet" href="/media/materialize/css/materialize.css"  media="screen,projection"/>
+		<title>{%block title%}{% endblock%}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	    <script type="text/javascript" src="/media/materialize/js/materialize.min.js"></script>
 
-</body>
+	    <div class="container">
+
+
+		    <nav >		    	
+		    	<div class="nav-wrapper">
+					<ul id="nav-mobile" class="left">
+						<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
+						<li><a href="{% url 'vista_productos' %}">Productos</a></li>
+						<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
+						<li><a href="#">Sabias Que...</a></li>
+
+					</ul>		    		
+		    	</div>
+		    </nav>
+			
+
+			{%block content %}
+			{%endblock%}
+
+			<p>-----------------------------------------</p>
+			<img src="/media/imagenes/logo.jpg" width="300px" height="250px">
+
+			<form action="." method="POST">
+				<h4>Contactanos</h4>
+				{% csrf_token %}
+				{{ formu.as_p }}
+				<input type="submit" value="Enviar">
+				<input type="reset" value="Limpiar">
+			</form>
+		</div>
+
+	</body>
 </html>
