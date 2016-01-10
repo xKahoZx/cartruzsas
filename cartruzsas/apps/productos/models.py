@@ -21,3 +21,4 @@ class Producto(models.Model):
 	imagen		= models.ImageField(upload_to = url, null = True, blank = True)
 	imagen2		= models.ImageField(upload_to = url, null = True, blank = True)
 	precio 		= models.IntegerField()
+	estado		= models.BooleanField(default = True)

@@ -4,43 +4,75 @@
 
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <link type="text/css" rel="stylesheet" href="/media/materialize/css/materialize.css"  media="screen,projection"/>
+	    <link rel="stylesheet" type="text/css" href="/media/css/styles.css">
 		<title>{%block title%}{% endblock%}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	    <script type="text/javascript" src="/media/materialize/js/materialize.min.js"></script>
 
 	    <div class="container">
 
+	    	<div class="row">
+			    <nav >		    	
+			    	<div class="nav-wrapper">
+						<ul id="nav-mobile" class="left">
+							<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
+							<li><a href="{% url 'vista_productos' %}">Productos</a></li>
+							<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
+							<li><a href="#">Sabias Que...</a></li>
 
-		    <nav >		    	
-		    	<div class="nav-wrapper">
-					<ul id="nav-mobile" class="left">
-						<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
-						<li><a href="{% url 'vista_productos' %}">Productos</a></li>
-						<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
-						<li><a href="#">Sabias Que...</a></li>
-
-					</ul>		    		
-		    	</div>
-		    </nav>
+						</ul>		    		
+			    	</div>
+			    </nav>
 			
-
-			{%block content %}
-			{%endblock%}
-
-			<p>-----------------------------------------</p>
-			<img src="/media/imagenes/logo.jpg" width="300px" height="250px">
-
-			<form action="." method="POST">
-				<h4>Contactanos</h4>
-				{% csrf_token %}
-				{{ formu.as_p }}
-				<input type="submit" value="Enviar">
-				<input type="reset" value="Limpiar">
-			</form>
+		    
+		    	<div class="col s9 ">
+					{%block content %}
+					{%endblock%}
+				</div>
+				<div class="col s3 ">
+					<img src="/media/images/logo.jpg" width="270px" height="240px" class="responsive-img">
+					<h4>Contactanos</h4>
+					<form action="." method="POST">
+						{% csrf_token %}
+						{{ formu.as_p }}
+						<input type="submit" value="Enviar">
+						<input type="reset" value="Limpiar">
+					</form>
+				</div>
+			</div>
+			
+			
+			
 		</div>
 
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	    <script type="text/javascript" src="/media/materialize/js/materialize.min.js"></script>
+	    <script type="text/javascript"> 
+	    	$(document).ready(function() {$('select').material_select();  });
+	    </script>
 	</body>
+	<footer class="page-footer">
+        <div class="container">
+            <div class="row">
+	            <div class="col l6 s12">
+	            	<h5 class="white-text">Footer Content</h5>
+	                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+	            </div>
+	            <div class="col l4 offset-l2 s12">
+	                <h5 class="white-text">Links</h5>
+	                <ul>
+		                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+		                
+	                </ul>
+	            </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+	            © 2014 Copyright Text
+	            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
 </html>

@@ -14,8 +14,11 @@ def add_product_view(request):
 		if formulario.is_valid():
 			add = formulario.save(commit = False)
 			add.save()
-			info = "Guardado satisfactoriamente"
-			return HttpResponseRedirect ('/productos')
+			if add.categoria == "Accesorio":
+				return HttpResponseRedirect ('/accesorios')
+			else:
+				return HttpResponseRedirect ('/productos')
+				
 	else:
 		formulario = add_product_form()
 	ctx = {'form':formulario,'informacion': info, 'formu':formulario}
@@ -29,9 +32,9 @@ def edit_productos_view(request, id_prodc):
 		if formulario.is_valid():
 			formulario.save()
 			if producto.categoria == "Producto":
-				return HttpResponseRedirect('/accesorios')
-			else:
 				return HttpResponseRedirect('/productos')
+			else:
+				return HttpResponseRedirect('/accesorios')
 	else:
 		formulario = add_product_form(instance = producto)
 	ctx = {'form':formulario, 'formu':formulario_cont}
