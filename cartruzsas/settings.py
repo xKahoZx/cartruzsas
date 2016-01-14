@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'cartruzsas.apps.home',
+    'cartruzsas.apps.home.contacto',
     'cartruzsas.apps.productos',
 )
 

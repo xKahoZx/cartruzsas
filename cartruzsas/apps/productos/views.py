@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 
 def add_product_view(request):
 	info = "iniciando"
-	formulario_cont = contacto_form()
+	
 	if request.method=="POST":
 		formulario = add_product_form(request.POST, request.FILES) 
 		if formulario.is_valid():
@@ -21,11 +21,10 @@ def add_product_view(request):
 				
 	else:
 		formulario = add_product_form()
-	ctx = {'form':formulario,'informacion': info, 'formu':formulario}
+	ctx = {'form':formulario,'informacion': info}
 	return render_to_response('productos/add_product.html',ctx, context_instance = RequestContext(request))
 
 def edit_productos_view(request, id_prodc):
-	formulario_cont = contacto_form()
 	producto = Producto.objects.get(pk = id_prodc)
 	if request.method == "POST":
 		formulario = add_product_form(request.POST, instance = producto)
@@ -37,6 +36,6 @@ def edit_productos_view(request, id_prodc):
 				return HttpResponseRedirect('/accesorios')
 	else:
 		formulario = add_product_form(instance = producto)
-	ctx = {'form':formulario, 'formu':formulario_cont}
+	ctx = {'form':formulario}
 	return render_to_response('productos/edit_productos.html', ctx , context_instance = RequestContext(request))
 

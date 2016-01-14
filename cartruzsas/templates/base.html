@@ -8,40 +8,34 @@
 		<title>{%block title%}{% endblock%}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
-	<body>
+	<body style="text-align: justify;">
 
 	    <div class="container">
 
 	    	<div class="row">
+
 			    <nav >		    	
 			    	<div class="nav-wrapper">
-						<ul id="nav-mobile" class="left">
+
+						<ul  class="left">
 							<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
 							<li><a href="{% url 'vista_productos' %}">Productos</a></li>
 							<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
 							<li><a href="#">Sabias Que...</a></li>
+							<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>
 
 						</ul>		    		
 			    	</div>
 			    </nav>
-			
+		
+			</div>
 		    
-		    	<div class="col s9 ">
+		 	<div class="row">
+		    	
 					{%block content %}
 					{%endblock%}
-				</div>
-				<div class="col s3 ">
-					<img src="/media/images/logo.jpg" width="270px" height="240px" class="responsive-img">
-					<h4>Contactanos</h4>
-					<form action="." method="POST">
-						{% csrf_token %}
-						{{ formu.as_p }}
-						<input type="submit" value="Enviar">
-						<input type="reset" value="Limpiar">
-					</form>
-				</div>
+				
 			</div>
-			
 			
 			
 		</div>
@@ -50,6 +44,7 @@
 	    <script type="text/javascript" src="/media/materialize/js/materialize.min.js"></script>
 	    <script type="text/javascript"> 
 	    	$(document).ready(function() {$('select').material_select();  });
+	    	$(".button-collapse").sideNav();
 	    </script>
 	</body>
 	<footer class="page-footer">

@@ -5,21 +5,27 @@
 {% endblock %}
 
 {%block content%}
+	
 	<div class="row">
-		<div class="col s6">
+		<div class="col s4">
 			<a href="{% url 'vista_agregar_producto' %}">Nuevo Producto</a>
 		</div>
 		<br>
 		{% if product %}
 			{%for p in product %}
 
-				<div class="col s6 m6">
+				<div class="col s12 m6">
 					
 					<h5>{{p.nombre}} </h5> 
 					<h6> <b>Descripcion:</b> </h6>					
 					<h6>{{p.descripcion}}</h6>
-					<img src="/media/{{p.imagen}}" width="190px" height="150px">
-					<img src="/media/{{p.imagen2}}" width="190px" height="150px" class="right">
+					<div class="col s6 m6">
+						<img src="/media/{{p.imagen}}" width="240px" height="150px">
+					</div>
+					<div class="col s6 m6">
+						<img src="/media/{{p.imagen2}}" width="240px" height="150px">
+					</div>
+					<br>
 					<a href="#">Ver mas...</a>					
 					<a href="/edit/product/{{p.id}}">Editar</a>
 					
