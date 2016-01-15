@@ -6,6 +6,7 @@ from cartruzsas.apps.productos.forms import *
 from cartruzsas.apps.productos.models import *
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.core.mail import EmailMultiAlternatives
 
 
 
@@ -43,7 +44,20 @@ def accesorios_view(request):
 	return render_to_response ('home/accesorios.html', ctx, context_instance = RequestContext(request))
 
 def contacto_view(request):
-	formu = contacto_form()
-	ctx = {"formu": formu}
+	formulario = contacto_form()
+	if request.method == "POST":
+		formulario = contacto_form(request.POST)
+		if formulario.is_valid():
+			email 		= formulario.cleaned_data=['correo']
+			nombre 	 	= formulario.cleaned_data=['nombre']
+			asunto  	= formulario.cleaned_data=['asunto']
+			descripcion = formulario.cleaned_data=['descripcion']
+			to_admin = 'datutalcha3@misena.edu.co'
+			html_content = "Informacion recibida de %s <br> ----Mensaje--- <br> %s"%(nombre, asunto)
+			msg = EmailMultiAlternatives('correo de contacto', html_content, 'from@server.com', [to_admin])
+			msg.attach_alternative(html_content, 'text/html')
+			msg.send()
+		
+	ctx = {'formu':formulario}
 	
 	return render_to_response('home/contacto.html', ctx, context_instance = RequestContext(request))

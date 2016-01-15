@@ -10,26 +10,32 @@
 	</head>
 	<body style="text-align: justify;">
 
-	    <div class="container">
-
-	    	<div class="row">
-
-			    <nav >		    	
-			    	<div class="nav-wrapper">
-
-						<ul  class="left">
-							<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
-							<li><a href="{% url 'vista_productos' %}">Productos</a></li>
-							<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
-							<li><a href="#">Sabias Que...</a></li>
-							<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>
-
-						</ul>		    		
-			    	</div>
-			    </nav>
+	    
+		<div class="container"> 
+			<div class="row">
+		    	<nav class="top-nav z-depth-2 ">
+		       		
+		         	<div class="nav-wrapper">
+			         	<div class="container"><a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a></div>
+				        	<ul id="nav-mobile" class="left hide-on-med-and-down">
+					        	<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
+								<li><a href="{% url 'vista_productos' %}">Productos</a></li>
+								<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
+								<li><a href="#">Sabias Que...</a></li>
+								<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>	
+			        		</ul>
+		         		</div>
+		        	
+	     		</nav>
+	      	</div>
+	      	<ul class="side-nav " style="width: 220px " id="mobile-demo">
+				<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
+				<li><a href="{% url 'vista_productos' %}">Productos</a></li>
+				<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
+				<li><a href="#">Sabias Que...</a></li>
+				<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>			
+			</ul>
 		
-			</div>
-		    
 		 	<div class="row">
 		    	
 					{%block content %}

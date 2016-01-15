@@ -22,3 +22,6 @@ class Producto(models.Model):
 	imagen2		= models.ImageField(upload_to = url, null = True, blank = True)
 	precio 		= models.IntegerField()
 	estado		= models.BooleanField(default = True)
+
+	def __unicode__(self):
+		return self.nombre
