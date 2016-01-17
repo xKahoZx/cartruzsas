@@ -4,11 +4,11 @@
 	Contactanos
 {% endblock %}
 
-{% block content %}
+{% block content_aux %}
 		<h4 align="center">Contactanos</h4>
 		<form action="." method="POST">
 			{% csrf_token %}
-			{{ formu.as_p }}
+			{{ form.as_p }}
 			<div align="center">
 				<input type="submit" value="Enviar">
 				<input type="reset" value="Limpiar">

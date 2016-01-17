@@ -2919,7 +2919,7 @@ ul.staggered-list li {
 footer.page-footer {
   margin-top: 20px;
   padding-top: 20px;
-  background-color: #ee6e73;
+  background-color: #dc8130;
 }
 
 footer.page-footer .footer-copyright {
@@ -6959,6 +6959,7 @@ nav ul a span.badge {
     margin-left: auto;
     left: auto;
     right: auto;
+    
   }
   .row .col.m4 {
     width: 33.3333333333%;
@@ -7309,7 +7310,7 @@ nav ul a span.badge {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #dc8130;
   width: 100%;
   height: 56px;
   line-height: 56px;
@@ -7329,8 +7330,10 @@ nav i.material-icons {
 }
 
 nav .nav-wrapper {
+  
   position: relative;
   height: 100%;
+  margin-top: 1%;
 }
 
 @media only screen and (min-width: 993px) {
@@ -7471,7 +7474,7 @@ nav .input-field label.active {
 }
 
 .navbar-fixed nav {
-  position: fixed;
+  
 }
 
 @media only screen and (min-width: 601px) {
@@ -9784,10 +9787,12 @@ select {
   height: calc(100% + 60px);
   height: -moz-calc(100%);
   padding-bottom: 60px;
-  background-color: #fff;
+  background-color: #dc8130;
   z-index: 999;
   overflow-y: auto;
   will-change: left;
+
+
 }
 
 .side-nav.right-aligned {
@@ -9811,7 +9816,7 @@ select {
 }
 
 .side-nav a {
-  color: #444;
+  color: #fff;
   display: block;
   font-size: 1rem;
   height: 64px;

@@ -3,7 +3,7 @@ from cartruzsas.apps.home.models import *
 
 class contacto_form(forms.Form):
 
-	nombre		= forms.CharField (widget  = forms.TextInput())
+	
 	correo		= forms.EmailField(widget  = forms.TextInput())
 	asunto		= forms.CharField (widget  = forms.TextInput())
 	descripcion	= forms.CharField (widget  = forms.Textarea())

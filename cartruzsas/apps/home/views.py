@@ -7,13 +7,20 @@ from cartruzsas.apps.productos.models import *
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
+from django.views.generic import View
 
 
 
 def inicio_view(request):	
-	
 	valores = Valores.objects.all()
-	ctx = {'val':valores}
+	formulario = contacto_form()
+	if request.method == "POST":
+		formulario = contacto_form(request.POST)
+		if formulario.is_valid():
+			envio_mail(formulario)
+
+
+	ctx = {'val':valores, 'formu': formulario}
 
 	return render_to_response('home/inicio.html', ctx, context_instance = RequestContext(request))
 
@@ -31,16 +38,27 @@ def edit_valores_view(request, id_valo):
 	ctx = {'form':formulario}
 	return render_to_response('home/edit_valores.html', ctx , context_instance = RequestContext(request))
 
-def productos_view(request):
-	
+def productos_view(request):	
 	lista_product = Producto.objects.filter(categoria = "Producto")
-	ctx = {'product': lista_product}
+	formulario = contacto_form()
+	if request.method == "POST":
+		formulario = contacto_form(request.POST)
+		if formulario.is_valid():
+			envio_mail(formulario)
+		
+	ctx = {'product': lista_product, 'formu':formulario}
 	return render_to_response ('home/productos.html', ctx, context_instance = RequestContext(request))
 
 def accesorios_view(request):
 		
 	lista_product = Producto.objects.filter(categoria = "Accesorio")
-	ctx = {'product': lista_product}
+	formulario = contacto_form()
+	if request.method == "POST":
+		formulario = contacto_form(request.POST)
+		if formulario.is_valid():
+			envio_mail(formulario)
+			
+	ctx = {'product': lista_product, 'formu':formulario}
 	return render_to_response ('home/accesorios.html', ctx, context_instance = RequestContext(request))
 
 def contacto_view(request):
@@ -48,16 +66,19 @@ def contacto_view(request):
 	if request.method == "POST":
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
-			email 		= formulario.cleaned_data=['correo']
-			nombre 	 	= formulario.cleaned_data=['nombre']
-			asunto  	= formulario.cleaned_data=['asunto']
-			descripcion = formulario.cleaned_data=['descripcion']
-			to_admin = 'datutalcha3@misena.edu.co'
-			html_content = "Informacion recibida de %s <br> ----Mensaje--- <br> %s"%(nombre, asunto)
-			msg = EmailMultiAlternatives('correo de contacto', html_content, 'from@server.com', [to_admin])
-			msg.attach_alternative(html_content, 'text/html')
-			msg.send()
+			envio_mail(formulario)
 		
-	ctx = {'formu':formulario}
+	ctx = {'form':formulario}
 	
 	return render_to_response('home/contacto.html', ctx, context_instance = RequestContext(request))
+
+def envio_mail(formulario):
+	email 		= formulario.cleaned_data=['correo']
+	nombre 	 	= formulario.cleaned_data=['nombre']
+	asunto  	= formulario.cleaned_data=['asunto']
+	descripcion = formulario.cleaned_data=['descripcion']
+	to_admin = 'datutalcha3@misena.edu.co'
+	html_content = "Informacion recibida de %s <br> ----Mensaje--- <br> %s"%(nombre, asunto)
+	msg = EmailMultiAlternatives(asunto, html_content, 'from@server.com', [to_admin])
+	msg.attach_alternative(html_content, 'text/html')
+	msg.send()
