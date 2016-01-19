@@ -8434,7 +8434,10 @@ a.waves-effect .waves-ripple {
 }
 
 .modal .modal-content {
-  padding: 24px;
+  padding-bottom: 10px;
+  padding-right: 24px;
+  padding-left: 24px;
+  padding-top: 24px;
 }
 
 .modal .modal-close {

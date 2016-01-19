@@ -18,7 +18,10 @@
 					
 					<h5>{{p.nombre}} </h5> 
 					<h6> <b>Descripcion:</b> </h6>					
-					<h6>{{p.descripcion}}<a class=" modal-trigger" href="#modal1">Ver mas..</a>	</h6>
+					<h6>{{p.descrip_aux}}
+
+					<a class=" modal-trigger" href="#{{p.id}}">Ver mas...</a>	</h6>
+
 					<div class="row">
 						<div class="col s6 m6">
 							<img src="/media/{{p.imagen}}" width="240px" height="150px">
@@ -34,14 +37,27 @@
 			{% endfor %}
 		{% endif %}
 	</div>
-
-	<div id="modal1" class="modal">
-	    <div class="modal-content">
-	      	<h4>Modal Header</h4>
-	      	<p>A bunch of text</p>
-	    </div>
-	    <div class="modal-footer">
-	     	<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-	    </div>
-	</div>
+	{% for p in product %}
+		<div id="{{p.id}}" class="modal">
+		    <div class="modal-content">
+		      	<h4>{{p.nombre}}</h4>
+		      	<p>{{p.descripcion}}</p>
+		    </div>
+		    <div class="modal-footer">
+		    	<div class="col s6 m4">
+					<img src="/media/{{p.imagen}}" width="300px" height="200px">
+					<br>
+					<h6><b>Precio: {{p.precio}} Pesos<b></h6>
+				</div>
+				<div class="col s6 m4">
+					<img src="/media/{{p.imagen2}}" width="300px" height="200px">
+				</div>
+				<div class="col m4 imagen">
+					<img src="/media/{{p.imagen3}}" width="300px" height="200px">
+					
+				</div>
+				
+		    </div>
+		</div>
+	{% endfor %}
 {%endblock %}

@@ -7,8 +7,7 @@ from cartruzsas.apps.productos.models import *
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
-from django.views.generic import View
-
+from django.contrib.auth import login, logout, authenticate
 
 
 def inicio_view(request):	
@@ -82,3 +81,27 @@ def envio_mail(formulario):
 	msg = EmailMultiAlternatives(asunto, html_content, 'from@server.com', [to_admin])
 	msg.attach_alternative(html_content, 'text/html')
 	msg.send()
+
+def login_view(request):
+	mensaje = ""
+	if request.user.is_authenticated():
+		return HttpResponseRedirect('/')
+	else:
+		if request.method == "POST":
+			formulario = Login_form(request.POST)
+			if formulario.is_valid():
+				usu = formulario.cleaned_data['usuario']
+				pas = formulario.cleaned_data['clave']
+				usuario = authenticate(username = usu, password = pas)
+				if usuario is not None and usuario.is_active:
+					login(request, usuario)
+					return HttpResponseRedirect('/')
+				else:
+					mensaje = "usuario y/o clave incorrecta"
+		formulario = Login_form()
+		ctx = {'form': formulario, 'men': mensaje}
+		return render_to_response('home/login.html', ctx, context_instance = RequestContext(request))
+
+def logout_view(request):
+	logout(request)
+	return HttpResponseRedirect('/')

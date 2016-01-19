@@ -13,6 +13,7 @@ def add_product_view(request):
 		formulario = add_product_form(request.POST, request.FILES) 
 		if formulario.is_valid():
 			add = formulario.save(commit = False)
+			add.descrip_aux = add.descripcion[0:155]
 			add.save()
 			if add.categoria == "Accesorio":
 				return HttpResponseRedirect ('/accesorios')
@@ -29,7 +30,9 @@ def edit_productos_view(request, id_prodc):
 	if request.method == "POST":
 		formulario = add_product_form(request.POST, instance = producto)
 		if formulario.is_valid():
-			formulario.save()
+			edit = formulario.save(commit = False)
+			edit.descrip_aux = edit.descripcion[0:155]
+			edit.save()
 			if producto.categoria == "Producto":
 				return HttpResponseRedirect('/productos')
 			else:

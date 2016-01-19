@@ -17,9 +17,11 @@ class Producto(models.Model):
 
 	nombre		= models.CharField(max_length = 100 )
 	categoria 	= models.CharField(max_length=50,choices = categorias, default = "Accesorio")
-	descripcion	= models.TextField(max_length = 500)
-	imagen		= models.ImageField(upload_to = url, null = True, blank = True)
-	imagen2		= models.ImageField(upload_to = url, null = True, blank = True)
+	descripcion	= models.TextField(max_length = 1000)
+	descrip_aux	= models.CharField(max_length = 155)
+	imagen		= models.ImageField(upload_to = url)
+	imagen2		= models.ImageField(upload_to = url)
+	imagen3		= models.ImageField(upload_to = url)
 	precio 		= models.IntegerField()
 	estado		= models.BooleanField(default = True)
 
