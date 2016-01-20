@@ -7,6 +7,6 @@ urlpatterns = patterns('cartruzsas.apps.home.views',
 	url(r'^logout/$', 'logout_view', name = 'vista_logout'),
 	url(r'^contacto/$', 'contacto_view', name = 'vista_contacto'),	
 	url(r'^edit/valores/(?P<id_valo>.*)/$', 'edit_valores_view' , name = 'vista_editar_valores'),
-	url(r'^productos/$', 'productos_view' , name = 'vista_productos'),
-	url(r'^accesorios/$', 'accesorios_view' , name = 'vista_accesorios'),
+	url(r'^productos/page/(?P<pagina>.*)/$', 'productos_view' , name = 'vista_productos'),
+	url(r'^accesorios/page/(?P<pagina>.*)/$', 'accesorios_view' , name = 'vista_accesorios'),
 )

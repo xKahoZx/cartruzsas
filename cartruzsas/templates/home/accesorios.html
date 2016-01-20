@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
 {%block title%}
-	Productos
+	Accesorios
 {% endblock %}
 
 {%block content%}
 	
 	<div class="row">
+		{% if user.is_authenticated %}
 		<div class="col s4">
 			<a href="{% url 'vista_agregar_producto' %}">Nuevo Producto</a>
 		</div>
+		{% endif %}
 		<br>
 		{% if product %}
 			{%for p in product %}
@@ -30,12 +32,30 @@
 							<img src="/media/{{p.imagen2}}" width="240px" height="150px">
 						</div>
 					</div>
+					{% if user.is_authenticated %}
 					<a href="/edit/product/{{p.id}}">Editar</a>
-					
+					{% endif %}
 		      	</div>
 
 			{% endfor %}
 		{% endif %}
+		<div class="row center col s12 m12 l12">
+			<ul class="pagination">
+			    {% if product.has_previous%}
+			    	<li class="active"><a href="/accesorios/page/{{product.previous_page_number}}"><i class="material-icons">chevron_left</i>Anterior</a></li>
+			    	
+			    {% else %}
+			    	<li class="disabled"><a href="#"><i class="material-icons ">chevron_left</i>Anterior</a></li>			    		
+			    {% endif%}
+			    {% if product.has_next %}
+			    	
+			    	<li class="active"><a href="/accesorios/page/{{product.next_page_number}}">Siguiente<i class="material-icons ">chevron_right</i></a></li>
+			    {% else %}			    	
+			    	<li class="disabled"><a href="#">Siguiente<i class="material-icons">chevron_right</i></a></li>
+			    {% endif %}	
+			</ul>
+				<h6>Pagina {{product.number}} de {{product.paginator.num_pages}} </h6>	
+		</div>
 	</div>
 	{% for p in product %}
 		<div id="{{p.id}}" class="modal">

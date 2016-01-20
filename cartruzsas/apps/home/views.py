@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth import login, logout, authenticate
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 
 def inicio_view(request):	
@@ -37,27 +38,46 @@ def edit_valores_view(request, id_valo):
 	ctx = {'form':formulario}
 	return render_to_response('home/edit_valores.html', ctx , context_instance = RequestContext(request))
 
-def productos_view(request):	
+def productos_view(request, pagina):	
 	lista_product = Producto.objects.filter(categoria = "Producto")
+	paginator = Paginator(lista_product, 4)
+	try:
+		page = int(pagina)
+	except:
+		page = 1
+	try:
+		productos = paginator.page(page)
+	except (EmptyPage, InvalidPage):
+		productos = paginator.page(paginator.num_pages)
+
 	formulario = contacto_form()
 	if request.method == "POST":
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
-		
-	ctx = {'product': lista_product, 'formu':formulario}
+
+	ctx = {'product': productos, 'formu':formulario}
 	return render_to_response ('home/productos.html', ctx, context_instance = RequestContext(request))
 
-def accesorios_view(request):
-		
-	lista_product = Producto.objects.filter(categoria = "Accesorio")
+def accesorios_view(request, pagina):	
+	lista_product = Producto.objects.filter(categoria = "Accesorios")
+	paginator = Paginator(lista_product, 4)
+	try:
+		page = int(pagina)
+	except:
+		page = 1
+	try:
+		productos = paginator.page(page)
+	except (EmptyPage, InvalidPage):
+		productos = paginator.page(paginator.num_pages)
+
 	formulario = contacto_form()
 	if request.method == "POST":
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
-			
-	ctx = {'product': lista_product, 'formu':formulario}
+
+	ctx = {'product': productos, 'formu':formulario}
 	return render_to_response ('home/accesorios.html', ctx, context_instance = RequestContext(request))
 
 def contacto_view(request):

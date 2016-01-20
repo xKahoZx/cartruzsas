@@ -18,7 +18,7 @@ def add_product_view(request):
 			if add.categoria == "Accesorio":
 				return HttpResponseRedirect ('/accesorios')
 			else:
-				return HttpResponseRedirect ('/productos')
+				return HttpResponseRedirect ('/productos/page/1')
 				
 	else:
 		formulario = add_product_form()

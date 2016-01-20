@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
+		<link rel="icon" type="image/png" href="/media/images/logo_cartruz.png" />
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <link type="text/css" rel="stylesheet" href="/media/materialize/css/materialize.css"  media="screen,projection"/>
 	    <link rel="stylesheet" type="text/css" href="/media/css/styles.css">
@@ -20,10 +20,12 @@
 
 				        	<ul id="nav-mobile" class="left hide-on-med-and-down">
 					        	<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
-								<li><a href="{% url 'vista_productos' %}">Productos</a></li>
-								<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
+								<li><a href="/productos/page/1">Productos</a></li>
+								<li><a href="/accesorios/page/1">Accesorios</a></li>
 								<li><a href="#">Sabias Que...</a></li>
-									
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
+								{% endif %}
 			        		</ul>
 		        		
 		         		</div>
@@ -34,10 +36,13 @@
 	      	<ul class="side-nav " style="width: 180px " id="mobile-demo">
 
 				<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
-				<li><a href="{% url 'vista_productos' %}">Productos</a></li>
-				<li><a href="{% url 'vista_accesorios' %}">Accesorios</a></li>
+				<li><a href="/productos/page/1">Productos</a></li>
+				<li><a href="/accesorios/page/1">Accesorios</a></li>
 				<li><a href="#">Sabias Que...</a></li>
-				<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>			
+				<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>		
+				{% if user.is_authenticated %}
+					<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
+				{% endif %}	
 			</ul>
 		
 		 	<div class="row">

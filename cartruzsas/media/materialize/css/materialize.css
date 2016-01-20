@@ -2731,7 +2731,7 @@ video.responsive-video {
 }
 
 .pagination li.active {
-  background-color: #ee6e73;
+  background-color: #dc8130;
 }
 
 .pagination li.disabled a {
@@ -7425,7 +7425,7 @@ nav ul a.btn, nav ul a.btn-large, nav ul a.btn-large, nav ul a.btn-flat, nav ul 
 }
 
 nav ul a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 nav ul.left {
@@ -9815,7 +9815,7 @@ select {
 }
 
 .side-nav li:hover, .side-nav li.active {
-  background-color: #ddd;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .side-nav a {
