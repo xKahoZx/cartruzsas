@@ -5,13 +5,15 @@
 {% endblock %}
 
 {%block content%}
-
-	<form action="." method="POST">
-		
-		{%csrf_token%}
-		{{form.as_p}}
-		<button type="submit"> Guardar</button>
-		<input type="reset" value="Limpiar">
-	</form>
-
+	{% if user.is_autenticated %}
+		<form action="." method="POST">
+			
+			{%csrf_token%}
+			{{form.as_p}}
+			<button type="submit"> Guardar</button>
+			<input type="reset" value="Limpiar">
+		</form>
+	{% else %}
+		<h5>Debes estar autenticado para poder editar los valores</h5>
+	{% endif %}
 {%endblock %}

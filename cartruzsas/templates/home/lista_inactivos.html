@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Lista de {{opcion}} inactivos
+{% endblock %}
+
+{% block content_aux%}
+	{% if user.is_authenticated%}
+		{% if items%}		
+			<h5 align="center"><b>Lista de {{opcion}} inactivos</b></h5>
+			<br>
+			<table class="bordered highlight centered ">
+		        <thead>
+		          <tr>
+		              <th >Nombre</th>
+		              <th >Opcion 1</th>
+		              <th >Opcion 2</th>
+		              <th >Opcion 3</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		        	{% for p in items %}
+				        <tr>
+				        	{% if opcion == "sabias que"%}
+				        		<td>{{p.titulo}}</td>
+				        	{% else %}
+				        		<td>{{p.nombre}}</td>
+				        	{% endif %}
+				            <td><a class=" modal-trigger" href="#{{p.id}}">Ver mas...</a></td>
+				            {% if opcion == "sabias que"%}
+				            	<td><a href="/edit/sabias/{{p.id}}">Editar</a></td>
+				            {% else %}
+				        		<td><a href="/edit/product/{{p.id}}">Editar</a></td>
+				        	{% endif %}
+				            <td><a href="/activar/items/{{p.id}}/{{opcion}}">Activar</a></td>
+				        </tr>
+			       	{% endfor %}
+		        </tbody>
+	      	</table>            
+	    {% else %}
+	    	<h5><b>No existen {{opcion}} inactivos</b></h5>
+		{% endif %}
+		{% for p in items %}
+			<div id="{{p.id}}" class="modal">
+			    <div class="modal-content">
+			    	{% if opcion == "sabias que"%}
+			      		<h4>{{p.titulo}}</h4>
+			      	{% else %}
+			      		<h4>{{p.nombre}}</h4>
+			      	{% endif %}
+			      	<h6>{{p.descripcion}}</h6>
+			    </div>
+			    <div class="modal-footer">
+			    	<div class="col s6 m4">
+						<img src="/media/{{p.imagen_1}}" width="300px" height="200px">
+					</div>
+					<div class="col s6 m4">
+						<img src="/media/{{p.imagen_2}}" width="300px" height="200px">
+					</div>
+					<div class="col m4 imagen">
+						<img src="/media/{{p.imagen_3}}" width="300px" height="200px">
+						
+					</div>
+					
+			    </div>
+			</div>
+		{% endfor %}
+	{% else %}
+		<h4>Debes estar autenticado para poder ver el contenido</h4>
+	{% endif%}
+
+{% endblock %}

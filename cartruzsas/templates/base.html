@@ -22,7 +22,8 @@
 					        	<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
 								<li><a href="/productos/page/1">Productos</a></li>
 								<li><a href="/accesorios/page/1">Accesorios</a></li>
-								<li><a href="#">Sabias Que...</a></li>
+								<li><a href="/sabias/page/1">Sabias Que...</a></li>
+								<li><a href="{%url 'vista_sobre_nosotros' %}">Sobre Nosotros</a></li>
 								{% if user.is_authenticated %}
 									<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
 								{% endif %}
@@ -38,7 +39,7 @@
 				<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
 				<li><a href="/productos/page/1">Productos</a></li>
 				<li><a href="/accesorios/page/1">Accesorios</a></li>
-				<li><a href="#">Sabias Que...</a></li>
+				<li><a href="/sabias/page/1">Sabias Que...</a></li>
 				<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>		
 				{% if user.is_authenticated %}
 					<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
@@ -51,14 +52,15 @@
 						{%block content %}
 						{%endblock%}
 					</div>
-					<div class="col m3 formulario" >
+					<div class="col l3 formulario" >
 						<img src="/media/images/logo.jpg" class="responsive-img">
 						<h5 align="center">Contactanos</h5>
 						<form action="." method="POST" enctype = "multipart/form-data">
 							{%csrf_token%}
 							{{formu.as_p}}
-							<button type="submit"> Guardar</button>
-							<input type="reset" value="Limpiar">
+
+							<button class="btn waves-effect waves-light" type="submit" ><b>Enviar</b><i class="material-icons right">email</i></button>
+							<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
 						</form>
 
 					</div>
@@ -78,9 +80,9 @@
 	    	$(document).ready(function() {$('select').material_select();  });
 	    	$(".button-collapse").sideNav();
 	    	$(document).ready(function(){$('.modal-trigger').leanModal(); });
-	    	$(document).ready(function(){
-      $('.carousel').carousel();
-    });
+	    	$(document).ready(function(){$('.slider').slider(); });
+    
+    
 	    </script>
 	</body>
 	<footer class="page-footer">

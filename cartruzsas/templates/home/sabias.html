@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {%block title%}
-	Accesorios
+	Sabias Que...
 {% endblock %}
 
 {%block content%}
@@ -9,17 +9,17 @@
 	<div class="row">
 		{% if user.is_authenticated %}
 			<div class="col s6">
-				<a href="{% url 'vista_agregar_producto' %}">Nuevo Producto</a>
+				<a href="{% url 'vista_agregar_sabias' %}">Nuevo Item</a>
 			</div>
 			<div class="col s6">
-				<a href="/listar/inactivos/accesorios">Listar Accesorios Inactivos</a>
+				<a href="/listar/inactivos/sabias que">Listas Items Inactivos</a>
 			</div>
 			<br>
 		{% endif %}
-		{% if product %}
-			{%for p in product %}
+		{% if lista %}
+			{%for p in lista %}
 				<div class="col s12 m6">					
-					<h5>{{p.nombre}} </h5> 
+					<h5>{{p.titulo}} </h5> 
 					<h6> <b>Descripcion:</b> </h6>					
 					<h6>{{p.descrip_aux}}
 					<a class=" modal-trigger" href="#{{p.id}}">Ver mas...</a>	</h6>
@@ -32,41 +32,39 @@
 						</div>
 					</div>
 					{% if user.is_authenticated %}
-						<a href="/edit/product/{{p.id}}">Editar</a>
+						<a href="/edit/sabias/{{p.id}}">Editar</a>
 					{% endif %}
 			    </div>
 			{% endfor %}
 		{% else %}
-			<h3>No existen accesorios disponibles</h3>
 
+			<h3>No existen items disponibles</h3>
 		{% endif %}
 		<div class="row center col s12 m12 l12">
 			<ul class="pagination">
 			    {% if product.has_previous%}
-			    	<li class="active"><a href="/productos/page/{{product.previous_page_number}}"><i class="material-icons">chevron_left</i>Anterior</a></li>
+			    	<li class="active"><a href="/sabias/page/{{lista.previous_page_number}}"><i class="material-icons">chevron_left</i>Anterior</a></li>
 			    {% else %}
 			    	<li class="disabled"><a ><i class="material-icons ">chevron_left</i>Anterior</a></li>
 				{% endif%}
 				{% if product.has_next %}
-				   	<li class="active"><a href="/productos/page/{{product.next_page_number}}">Siguiente<i class="material-icons ">chevron_right</i></a></li>
+				   	<li class="active"><a href="/sabias/page/{{lista.next_page_number}}">Siguiente<i class="material-icons ">chevron_right</i></a></li>
 			    {% else %}			    	
 					<li class="disabled"><a >Siguiente<i class="material-icons">chevron_right</i></a></li>
 			    {% endif %}	
 			</ul>
-				<h6 class="paginacion">Pagina {{product.number}} de {{product.paginator.num_pages}} </h6>	
+				<h6 class="paginacion">Pagina {{lista.number}} de {{lista.paginator.num_pages}} </h6>	
 		</div>		
 	</div>
-	{% for p in product %}
+	{% for p in lista %}
 		<div id="{{p.id}}" class="modal">
 		    <div class="modal-content">
-		      	<h4>{{p.nombre}}</h4>
+		      	<h4>{{p.titulo}}</h4>
 		      	<h6>{{p.descripcion}}</h6>
 		    </div>
 		    <div class="modal-footer">
 		    	<div class="col s6 m4">
 					<img src="/media/{{p.imagen_1}}" width="300px" height="200px">
-					<br>
-					<h6><b>Precio: {{p.precio}} Pesos<b></h6>
 				</div>
 				<div class="col s6 m4">
 					<img src="/media/{{p.imagen_2}}" width="300px" height="200px">

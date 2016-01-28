@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Inicio
+{% endblock %}
+
+{% block content %}
+	
+	<div>
+		{% for p in val %}
+
+			<h4>Quienes somos</h4>
+			{{p.somos}}
+			<h4>Misión</h4>
+			{{p.mision}}
+			<h4>visión</h4>
+			{{p.vision}}
+			<br>
+			{% if user.is_authenticated %}
+				<a href="/edit/valores/{{p.id}}">Editar</a>
+			{%endif %}
+		
+		{% endfor %}
+	</div>
+	
+
+	
+{% endblock %}

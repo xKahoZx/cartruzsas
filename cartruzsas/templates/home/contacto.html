@@ -10,8 +10,8 @@
 			{% csrf_token %}
 			{{ form.as_p }}
 			<div align="center">
-				<input type="submit" value="Enviar">
-				<input type="reset" value="Limpiar">
+				<button class="btn waves-effect waves-light" type="submit" ><b>Enviar</b><i class="material-icons right">email</i></button>
+				<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
 			</div>
 		 </form>
 {% endblock %}

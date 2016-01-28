@@ -5,22 +5,22 @@
 
 {% block content_aux %}
 	
-	<h3>Inicio de sesion</h3>
+	<div align="center">
+		<h3>Inicio de sesion</h3>
 
-	<form action="." method="POST" >  		
-		{% csrf_token %}
-		{{mensaje}}
-		{{form.as_p}}
-		{% if men %}
-			{{men}}
+		<form action="." method="POST" >  		
+			{% csrf_token %}
+			{{mensaje}}
+			{{form.as_p}}
+			{% if men %}
+				{{men}}
+				<br>
+				<br>
+			{% endif %}
+			<button class="btn waves-effect waves-light" type="submit" ><b>Iniciar</b><i class="material-icons right">supervisor_account</i></button>		
+			<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>					
 			<br>
 			<br>
-		{% endif %}
-		<button class="btn waves-effect waves-light red darken-2" type="submit" >
-			<i class="material-icons left">supervisor_account</i>Iniciar Sesion
-		</button>
-		<br>
-		<br>
-	</form>
-
+		</form>
+	</div>
 {% endblock %}

@@ -6664,7 +6664,7 @@ nav ul a span.badge {
 
 @media only screen and (min-width: 993px) {
   .container {
-    width: 80%;
+    width: 85%;
     /* padding-top: 1%; */
   }
 }
@@ -8064,12 +8064,12 @@ small {
 
 .btn, .btn-large, .btn-flat {
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   display: inline-block;
   height: 36px;
   line-height: 36px;
   outline: 0;
-  padding: 0 2rem;
+  padding: 0 1rem;
   text-transform: uppercase;
   vertical-align: middle;
   -webkit-tap-highlight-color: transparent;
@@ -8099,7 +8099,7 @@ small {
 .btn, .btn-large {
   text-decoration: none;
   color: #fff;
-  background-color: #26a69a;
+  background-color: #dc8130;
   text-align: center;
   letter-spacing: .5px;
   transition: .2s ease-out;
@@ -8107,7 +8107,8 @@ small {
 }
 
 .btn:hover, .btn-large:hover {
-  background-color: #2bbbad;
+  background-color: #dc8130;
+  opacity: 0.7;
 }
 
 .btn-floating {
@@ -8431,6 +8432,10 @@ a.waves-effect .waves-ripple {
 
 .modal h1, .modal h2, .modal h3, .modal h4 {
   margin-top: 0;
+  background-color: #dc8130;
+  color: #fff;
+  opacity: 0.9;
+  text-align: center;
 }
 
 .modal .modal-content {
@@ -8665,7 +8670,7 @@ select:focus {
 
 button:focus {
   outline: none;
-  background-color: #2ab7a9;
+  background-color: #dc8130;
 }
 
 label {
@@ -8940,6 +8945,7 @@ textarea.materialize-textarea + label:after {
 .input-field {
   position: relative;
   margin-top: 1rem;
+  cursor: pointer;
 }
 
 .input-field label {
@@ -10484,7 +10490,7 @@ select {
 }
 
 .slider .indicators .indicator-item.active {
-  background-color: #4CAF50;
+  background-color: #dc8130;
 }
 
 .carousel {
