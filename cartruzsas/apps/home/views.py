@@ -11,22 +11,26 @@ from django.contrib.auth import login, logout, authenticate
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 
 #Vista inicio
+#en esta vista inicio_view cargo las imagenes correspondientes a mostar en el slider.
 def inicio_view(request):	
-	
+	items 	= Slider.objects.filter(estado = "Activo")
 	formulario = contacto_form()
 	if request.method == "POST":
-		envio_mail(formulario)
-	ctx = {'formu': formulario}
+		formulario = contacto_form(request.POST)
+		if formulario.is_valid():
+			envio_mail(formulario)
+	ctx = {'formu': formulario, 'sliders': items}
 
 	return render_to_response('home/inicio.html', ctx, context_instance = RequestContext(request))
 
 #Bloque sobre nosotros
 def sobre_nosotros_view(request):
 	valores = Valores.objects.all()
+	items 	= Slider.objects.filter(estado = "Activo")
 	formulario = contacto_form()
 	if request.method == "POST":
 		envio_mail(formulario)
-	ctx = {'val':valores, 'formu': formulario}
+	ctx = {'val':valores, 'formu': formulario, 'slider': items}
 
 	return render_to_response('home/nosotros.html', ctx, context_instance = RequestContext(request))
 
@@ -123,6 +127,14 @@ def listar_inactivos_view(request, opcion):
 	ctx = {'items': items, 'opcion' : opcion}
 	return render_to_response('home/lista_inactivos.html', ctx, context_instance = RequestContext(request))
 #fin vista
+#vista listar slider
+
+def sliders_view(request):
+	items = Slider.objects.all().order_by('titulo')
+	ctx = {'items':items}
+	return render_to_response('home/sliders.html', ctx, context_instance = RequestContext(request))
+
+#fin vista
 #vista activar productos -accesorios - sabias que inactivos
 def activar_items_view(request, id_item , opcion):
 	item = {}
@@ -152,6 +164,7 @@ def contacto_view(request):
 	ctx = {'form':formulario}
 	
 	return render_to_response('home/contacto.html', ctx, context_instance = RequestContext(request))
+#fin vista
 
 #funcion que cargan las otras vista para el envio de correos al gmail
 def envio_mail(formulario):
@@ -191,3 +204,4 @@ def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
 #fin bloque
+

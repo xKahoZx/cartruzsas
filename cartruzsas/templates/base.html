@@ -6,72 +6,74 @@
 	    <link type="text/css" rel="stylesheet" href="/media/materialize/css/materialize.css"  media="screen,projection"/>
 	    <link rel="stylesheet" type="text/css" href="/media/css/styles.css">
 		<title>{%block title%}{% endblock%}</title>
+		<meta name="google-site-verification" content="-GPzaAM0YGNsdSXqBo-CkrCU-9C1kwloGHqjEPTpNBI" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body style="text-align: justify;">
 
-	    
 		<div class="container"> 
-			<div class="row">
-		    	<nav class="top-nav z-depth-2 ">
-		       		
-		         	<div class="nav-wrapper">
-			         	<div class="container"><a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a></div>
+			<header>
+				<div class="row">
+			    	<nav class="top-nav z-depth-2 ">
+			       		
+			         	<div class="nav-wrapper">
+				         	<div class="container"><a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a></div>
 
-				        	<ul id="nav-mobile" class="left hide-on-med-and-down">
-					        	<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
-								<li><a href="/productos/page/1">Productos</a></li>
-								<li><a href="/accesorios/page/1">Accesorios</a></li>
-								<li><a href="/sabias/page/1">Sabias Que...</a></li>
-								<li><a href="{%url 'vista_sobre_nosotros' %}">Sobre Nosotros</a></li>
-								{% if user.is_authenticated %}
-									<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
-								{% endif %}
-			        		</ul>
-		        		
-		         		</div>
-	     		</nav>
+					        	<ul id="nav-mobile" class="left hide-on-med-and-down">
+						        	<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
+									<li><a href="/productos/page/1">Productos</a></li>
+									<li><a href="/accesorios/page/1">Accesorios</a></li>
+									<li><a href="/sabias/page/1">Sabias Que...</a></li>
+									<li><a href="{%url 'vista_sobre_nosotros' %}">Sobre Nosotros</a></li>
+									{% if user.is_authenticated %}
+										<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
+									{% endif %}
+				        		</ul>
+			        		
+			         		</div>
+		     		</nav>
 
-	      	</div>
+		      	</div>
 
-	      	<ul class="side-nav " style="width: 180px " id="mobile-demo">
+		      	<ul class="side-nav " style="width: 180px " id="mobile-demo">
 
-				<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
-				<li><a href="/productos/page/1">Productos</a></li>
-				<li><a href="/accesorios/page/1">Accesorios</a></li>
-				<li><a href="/sabias/page/1">Sabias Que...</a></li>
-				<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>		
-				{% if user.is_authenticated %}
-					<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
-				{% endif %}	
-			</ul>
-		
-		 	<div class="row">
-		    	{% if formu %}
-			    	<div class="col s12 m12 l9">
-						{%block content %}
+					<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
+					<li><a href="/productos/page/1">Productos</a></li>
+					<li><a href="/accesorios/page/1">Accesorios</a></li>
+					<li><a href="/sabias/page/1">Sabias Que...</a></li>
+					<li><a href="{% url 'vista_contacto' %}">Contactanos</a></li>		
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
+					{% endif %}	
+				</ul>
+			</header>
+			<main>
+			 	<div class="row">
+			    	{% if formu %}
+				    	<div class="col s12 m12 l9">
+							{%block content %}
+							{%endblock%}
+						</div>
+						<div class="col l3 formulario" >
+							<img src="/media/images/logo.jpg" class="responsive-img">
+							<h5 align="center">Contactanos</h5>
+							<form action="." method="POST">
+								{%csrf_token%}
+								{{formu.as_p}}
+
+								<button class="btn waves-effect waves-light" type="submit" ><b>Enviar</b><i class="material-icons right">email</i></button>
+								<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
+							</form>
+
+						</div>
+					{% else %}
+						{%block content_aux %}
 						{%endblock%}
-					</div>
-					<div class="col l3 formulario" >
-						<img src="/media/images/logo.jpg" class="responsive-img">
-						<h5 align="center">Contactanos</h5>
-						<form action="." method="POST" enctype = "multipart/form-data">
-							{%csrf_token%}
-							{{formu.as_p}}
-
-							<button class="btn waves-effect waves-light" type="submit" ><b>Enviar</b><i class="material-icons right">email</i></button>
-							<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
-						</form>
-
-					</div>
-				{% else %}
-					{%block content_aux %}
-					{%endblock%}
-				{% endif %}
+					{% endif %}
+					
+				</div>
 				
-			</div>
-			
-			
+			</main>
 		</div>
 
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -80,32 +82,56 @@
 	    	$(document).ready(function() {$('select').material_select();  });
 	    	$(".button-collapse").sideNav();
 	    	$(document).ready(function(){$('.modal-trigger').leanModal(); });
-	    	$(document).ready(function(){$('.slider').slider(); });
-    
-    
+	    	$(document).ready(function(){$('.slider').slider({full_width: true});    });
+    		$(document).ready(function(){$('.carousel').carousel();});
+    		$(document).ready(function(){$('.materialboxed').materialbox();})
+        	$('.carousel').carousel('next', [1]);
+    	
 	    </script>
 	</body>
 	<footer class="page-footer">
         <div class="container">
             <div class="row">
 	            <div class="col l6 s12">
-	            	<h5 class="white-text">Footer Content</h5>
-	                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+	            	<div class="col s5 m6">
+	            		<h5 class="white-text">Links</h5>
+	            		<ul>
+	            			<li><a href="{% url  'vista_inicio' %}" class="white-text">Inicio</a></li>
+		            		<li><a href="/productos/page/1/" class="white-text">Productos</a></li>
+		            		<li><a href="/accesorios/page/1/" class="white-text">Accesorios</a></li>
+		            		<li><a href="/sabias/page/1/" class="white-text">Sabias Que...</a></li>
+		            		<li><a href="{% url  'vista_sobre_nosotros' %}" class="white-text">Sobre nosotros</a></li>
+	            		</ul>
+	            	</div>
+	            	<div class="col s7 m6">
+	            		<h5 class="white-text">Contacto</h5>
+	            		<p class="white-text"><i class="material-icons left ">contact_phone</i> 311-394-0873</p>
+	            		<p class="white-text"><i class="material-icons left ">mail</i> contacto@cartruzsas.com</p>
+	            		<p class="white-text"><i class="material-icons left ">location_on
+						</i><a class="white-text" target="_blank" href="https://www.google.com.co/maps/place/Campanario+Centro+Comercial/@2.4591605,-76.5956824,17z/data=!4m5!1m2!2m1!1scentro+comercial!3m1!1s0x0000000000000000:0xa749ba51fed22c24?hl=es-419">Ver ubicacion</a></p>
+
+	            	</div>
+	            	
+	          
 	            </div>
-	            <div class="col l4 offset-l2 s12">
-	                <h5 class="white-text">Links</h5>
+	            <div class="col l5 offset-l1 s12">
+	                <h5 class="white-text">Patrocinadores</h5>
 	                <ul>
-		                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-		                
+		                <li >
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/enlaces/logo_sena.jpg"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/enlaces/logo_fonade.png"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/enlaces/logo_republica.jpg"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-rectangular" src="/media/images/enlaces/logo_fondo_emprender.jpg"></a>
+		                </li>		                
 	                </ul>
 	            </div>
             </div>
         </div>
         <div class="footer-copyright">
-            <div class="container">
-	            © 2014 Copyright Text
-	            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-            </div>
+            <div class="container center">
+            	<h6><b>www.cartruzsas.com</b></h6>
+           
+        	</div>
         </div>
     </footer>
 </html>

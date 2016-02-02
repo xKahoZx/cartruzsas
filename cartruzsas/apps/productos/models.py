@@ -46,3 +46,22 @@ class Sabias(models.Model):
 	imagen_2	= models.ImageField(upload_to = url)
 	imagen_3	= models.ImageField(upload_to = url)
 	estado		= models.CharField(max_length= 15,choices = estados, default = "Activo")
+
+class Slider(models.Model):
+	
+	estados = (
+		(u'Activo',u'Activo'),
+		(u'Inactivo',u'Inactivo'),
+	)
+
+	def url(self,filename):
+		ruta = "MultimediaData/Slider/%s%s"%(self.titulo, str(filename))
+		return ruta
+
+	titulo		= models.CharField(max_length = 20)
+	texto		= models.CharField(max_length = 50)
+	imagen		= models.ImageField(upload_to = url)
+	estado		= models.CharField(max_length = 20, choices = estados, default = "Activo")
+
+	def __unicode__(self):
+		return self.titulo

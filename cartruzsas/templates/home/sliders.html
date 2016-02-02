@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Lista items 
+{% endblock %}
+
+{% block content_aux%}
+
+	{% if user.is_authenticated%}
+		<a href="{% url 'vista_agregar_slider'%}">Nuevo item</a>
+		{% if items%}		
+			<h5 align="center"><b>Lista de items para el slider</b></h5>
+			<br>
+			<table class="bordered highlight centered ">
+		        <thead>
+		          <tr>
+		              <th >Titulo</th>
+		              <th >Texto</th>
+		              <th >Imagen</th>
+		              <th >Estado</th>
+		              <th >Opcion</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		        	{% for p in items %}
+				        <tr>
+				        	<td>{{p.titulo}}</td>
+				        	<td>{{p.texto}}</td>
+				        	<td><a href="/media/{{p.imagen}}" target="_blank" >Ver imagen</a></td>
+				        	<td>{{p.estado}}</td>
+				        	<td><a href="/edit/slider/{{p.id}}">Editar</a></td>
+				        </tr>
+			       	{% endfor %}
+		        </tbody>
+	      	</table>            
+	    {% else %}
+	    	<h5><b>No existen {{opcion}} inactivos</b></h5>
+		{% endif %}
+		
+	{% else %}
+		<h4>Debes estar autenticado para poder ver el contenido</h4>
+	{% endif%}
+
+{% endblock %}

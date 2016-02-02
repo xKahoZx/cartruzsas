@@ -69,3 +69,31 @@ def edit_sabias_view(request, id_item):
 		formulario = add_sabias_form(instance = item)
 	ctx = {'form':formulario}
 	return render_to_response('productos/edit_sabias.html', ctx , context_instance = RequestContext(request))
+
+
+def add_slider_view(request):
+	info = "iniciando"	
+	if request.method=="POST":
+		formulario = add_slider_form(request.POST, request.FILES) 
+		if formulario.is_valid():
+			add = formulario.save(commit = False)			
+			add.save()
+			return HttpResponseRedirect ('/slider')				
+	else:
+		formulario = add_slider_form()
+	ctx = {'form':formulario,'informacion': info}
+	return render_to_response('home/add_slider.html',ctx, context_instance = RequestContext(request))
+
+def edit_slider_view(request, id_item):
+	item = Slider.objects.get(pk = id_item)
+	if request.method == "POST":
+		formulario = add_slider_form(request.POST, request.FILES,instance = item)
+		if formulario.is_valid():
+			edit = formulario.save(commit = False)
+			edit.save()
+			
+			return HttpResponseRedirect('/slider')
+	else:
+		formulario = add_slider_form(instance = item)
+	ctx = {'form':formulario}
+	return render_to_response('productos/edit_slider.html', ctx , context_instance = RequestContext(request))

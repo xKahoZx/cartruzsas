@@ -1,49 +1,58 @@
 {% extends 'base.html' %}
-
+ 
 {% block title %}
-	Inicio
+    Inicio
 {% endblock %}
 
 {% block content %}
-	<div class="row">
-		<div class="slider ">
-		    <ul class="slides ">
-		      <li>
-		        <img src="/media/images/slider/imagen_2.jpg"> <!-- random image -->
-		        <div class="caption center-align">
-		          
-		        </div>
-		      </li>
-		      <li>
-		        <img src="/media/images/slider/imagen_3.jpg"> <!-- random image -->
-		        <div class="caption left-align">
-		          
-		        </div>
-		      </li>
-		      <li>
-		        <img src="/media/images/slider/imagen_4.jpg"> <!-- random image -->
-		        <div class="caption right-align">
-		          
-		        </div>
-		      </li>
-		      <li>
-		        <img src="/media/images/slider/imagen_6.jpg"> <!-- random image -->
-		        <div class="caption center-align">
-		          
-		        </div>
-		      </li>
-		      <li>
-		        <img src="/media/images/slider/imagen_7.jpg"> <!-- random image -->
-		        <div class="caption center-align">
-		          
-		        </div>
-		      </li>
-		    </ul>
-		  </div>
-		      
+  <div class="row">
+    <div class="slider">
+        <ul class="slides">
+          <li>
+            <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+            <div class="caption center-align">
+              <h3>This is our big Tagline!</h3>
+              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+          </li>
+          <li>
+            <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+            <div class="caption left-align">
+              <h3>Left Aligned Caption</h3>
+              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+          </li>
+          <li>
+            <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
+            <div class="caption right-align">
+              <h3>Right Aligned Caption</h3>
+              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+          </li>
+          <li>
+            <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
+            <div class="caption center-align">
+              <h3>This is our big Tagline!</h3>
+              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-	</div>
-	
 
-	
+  </div>
+  <br>
+  <div class="row">
+    <div class="carousel">
+    
+      <h6>CARTRUZ SAS esta comprometido con la comunidad del Municipio del Patía, especifícamente con la vereda Potrerillo</h6>
+  <br>
+      <br>
+      <a class="carousel-item" href="#one!"><img src="/media/images/carousel/imagen_2.jpg"></a>
+      <a class="carousel-item" href="#two!"><img src="/media/images/carousel/imagen_3.jpg"></a>
+      <a class="carousel-item" href="#three!"><img src="/media/images/carousel/imagen_4.jpg"></a>
+      <a class="carousel-item" href="#four!"><img src="/media/images/carousel/imagen_6.jpg"></a>
+      <a class="carousel-item" href="#five!"><img src="/media/images/carousel/imagen_7.jpg"></a>
+    </div>
+  </div>
 {% endblock %}

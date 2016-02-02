@@ -8,10 +8,10 @@
 	
 	<div class="row">
 		{% if user.is_authenticated %}
-			<div class="col s6">
+			<div class="col s12 m6">
 				<a href="{% url 'vista_agregar_producto' %}">Nuevo Producto</a>
 			</div>
-			<div class="col s6">
+			<div class="col s12 m6">
 				<a href="/listar/inactivos/accesorios">Listar Accesorios Inactivos</a>
 			</div>
 			<br>
@@ -43,12 +43,12 @@
 		<div class="row center col s12 m12 l12">
 			<ul class="pagination">
 			    {% if product.has_previous%}
-			    	<li class="active"><a href="/productos/page/{{product.previous_page_number}}"><i class="material-icons">chevron_left</i>Anterior</a></li>
+			    	<li class="active"><a href="/accesorios/page/{{product.previous_page_number}}"><i class="material-icons">chevron_left</i>Anterior</a></li>
 			    {% else %}
 			    	<li class="disabled"><a ><i class="material-icons ">chevron_left</i>Anterior</a></li>
 				{% endif%}
 				{% if product.has_next %}
-				   	<li class="active"><a href="/productos/page/{{product.next_page_number}}">Siguiente<i class="material-icons ">chevron_right</i></a></li>
+				   	<li class="active"><a href="/accesorios/page/{{product.next_page_number}}">Siguiente<i class="material-icons ">chevron_right</i></a></li>
 			    {% else %}			    	
 					<li class="disabled"><a >Siguiente<i class="material-icons">chevron_right</i></a></li>
 			    {% endif %}	

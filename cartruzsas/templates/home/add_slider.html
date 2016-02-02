@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block title%}
+	Agregar Nuevo Item 
+{% endblock %}
+
+{%block content_aux %}
+	{% if user.is_authenticated %}
+		<div align="center">
+			<form action="." method="POST" enctype = "multipart/form-data">
+				
+				{%csrf_token%}
+				{{form.as_p}}
+				<button class="btn waves-effect waves-light" type="submit" ><b>Guardar</b><i class="material-icons right">note_add</i></button>
+				<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
+			</form>
+		</div>
+	{% else %}
+		<h5>Debes estar autenticado para poder ingresar un nuevo producto</h5>
+	{% endif %}
+{%endblock %}

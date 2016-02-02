@@ -8,10 +8,10 @@
 	
 	<div class="row">
 		{% if user.is_authenticated %}
-			<div class="col s6">
+			<div class="col s12 m6">
 				<a href="{% url 'vista_agregar_producto' %}">Nuevo Producto</a>
 			</div>
-			<div class="col s6">
+			<div class="col s12 m6">
 				<a href="/listar/inactivos/productos">Listar Productos Inactivos</a>
 			</div>
 			<br>

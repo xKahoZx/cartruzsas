@@ -10,8 +10,15 @@
        	display: none;
 
     	}
+    .img-enlace-redondo{
+      width: 70px !important;    
+      height: 60px !important;    
+    }  
+    .img-enlace-rectangular{
+      width: 110px !important;
+      height: 60px !important;
+    }
 	}
-
 
 .paginacion{
 	background: #dc8130;
@@ -24,4 +31,21 @@
   
 }
 
+.img-enlace-redondo{
+  border-radius: 50%;
+  width: 90px;
+  margin-right: 5px;
+  height: 80px;
+}
 
+.img-enlace-redondo:hover, .img-enlace-rectangular:hover{
+   -webkit-transform: scale(1.5);
+    transform: scale(1.5)
+}
+
+.img-enlace-rectangular{
+  border-radius: 7%;
+  height: 80px;
+  width: 160px;
+}
+ 

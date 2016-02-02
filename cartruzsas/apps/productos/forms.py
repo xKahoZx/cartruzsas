@@ -10,3 +10,7 @@ class add_sabias_form(forms.ModelForm):
 	class Meta:
 		model 	= Sabias
 		exclude = ('descrip_aux')
+
+class add_slider_form(forms.ModelForm):
+	class Meta:
+		model 	= Slider

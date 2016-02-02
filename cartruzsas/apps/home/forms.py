@@ -14,6 +14,7 @@ class valores_form(forms.ModelForm):
 		model 	= Valores
 
 
+
 class Login_form(forms.Form):
 	usuario		= forms.CharField(widget = forms.TextInput())
 	clave		= forms.CharField(widget = forms.PasswordInput(render_value = True))

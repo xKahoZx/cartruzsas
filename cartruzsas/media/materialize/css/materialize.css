@@ -2354,8 +2354,7 @@ sub {
 img {
   border: 0;
   width: 100%;
-  height: 150px;
- 
+  height: 170px;
 }
 
 /**
@@ -2682,8 +2681,8 @@ i {
 
 i.left {
   float: left;
-  margin-right: 15px;
-  margin-left: 15px;
+  margin-right: 10px;
+  /* margin-left: 15px; */
 }
 
 i.right {
@@ -10404,7 +10403,7 @@ select {
 
 .slider {
   position: relative;
-  height: 400px;
+  height: 380px !important;
   width: 100%;
 }
 
@@ -10430,7 +10429,7 @@ select {
 .slider .slides {
   background-color: #9e9e9e;
   margin: 0;
-  height: 400px;
+  height: 90% !important;
 }
 
 .slider .slides li {
@@ -10497,24 +10496,31 @@ select {
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 300px;
   -webkit-perspective: 500px;
-          perspective: 500px;
+  perspective: 500px;
   -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -webkit-transform-origin: 0% 50%;
-          transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
 }
 
 .carousel .carousel-item {
   width: 200px;
   position: absolute;
-  top: 0;
+  top:0;
   left: 0;
 }
+@media only screen and (max-width: 600px) {
+    .carousel .carousel-item img {
+        width: 100% !important;
+        height: 100% !important;
+    }
+  }
 
 .carousel .carousel-item img {
-  width: 100%;
+  width: 130%;
+  height: 150%;
 }
 
 .carousel.carousel-slider {
