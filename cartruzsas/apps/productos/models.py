@@ -55,7 +55,7 @@ class Slider(models.Model):
 	)
 
 	def url(self,filename):
-		ruta = "MultimediaData/Slider/%s%s"%(self.titulo, str(filename))
+		ruta = "MultimediaData/Slider/%s.jpg"%(self.titulo)
 		return ruta
 
 	titulo		= models.CharField(max_length = 20)
@@ -65,3 +65,33 @@ class Slider(models.Model):
 
 	def __unicode__(self):
 		return self.titulo
+
+
+class Imagen_Labor_Social(models.Model):
+	
+	def  url(self,filename):
+		ruta = "MultimediaData/Labor_Social/%s.jpg"%(self.nombre)
+		return ruta
+	nombre 		= models.CharField(max_length = 100, unique = True)
+	imagen 		= models.ImageField(upload_to = url)
+
+	def __unicode__(self):
+		return self.nombre
+
+class Labor_Social(models.Model):
+	
+	encabezado		= models.CharField(max_length = 200)
+	imagen 			= models.ManyToManyField(Imagen_Labor_Social)
+
+	def __unicode__(self):
+		return self.encabezado
+
+
+
+
+
+
+
+
+
+

@@ -13,24 +13,27 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 #Vista inicio
 #en esta vista inicio_view cargo las imagenes correspondientes a mostar en el slider.
 def inicio_view(request):	
-	items 	= Slider.objects.filter(estado = "Activo")
+	items 		= Slider.objects.filter(estado = "Activo")
+	carousel	= Labor_Social.objects.get(id = 1)
+	imagenes	= Imagen_Labor_Social.objects.all()
 	formulario = contacto_form()
 	if request.method == "POST":
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
-	ctx = {'formu': formulario, 'sliders': items}
+			HttpResponseRedirect('/')
+	ctx = {'formu': formulario, 'sliders': items, 'carousel': carousel, 'imagenes': imagenes}
 
 	return render_to_response('home/inicio.html', ctx, context_instance = RequestContext(request))
 
 #Bloque sobre nosotros
 def sobre_nosotros_view(request):
 	valores = Valores.objects.all()
-	items 	= Slider.objects.filter(estado = "Activo")
 	formulario = contacto_form()
 	if request.method == "POST":
 		envio_mail(formulario)
-	ctx = {'val':valores, 'formu': formulario, 'slider': items}
+		HttpResponseRedirect('/nosotros')
+	ctx = {'val':valores, 'formu': formulario}
 
 	return render_to_response('home/nosotros.html', ctx, context_instance = RequestContext(request))
 
@@ -66,7 +69,7 @@ def productos_view(request, pagina):
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
-
+			HttpResponseRedirect('/productos/page/1')
 	ctx = {'product': productos, 'formu':formulario}
 	return render_to_response ('home/productos.html', ctx, context_instance = RequestContext(request))
 #vista listar accesorios
@@ -87,6 +90,7 @@ def accesorios_view(request, pagina):
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
+			HttpResponseRedirect('/accesorios/page/1')
 	ctx = {'product': productos, 'formu':formulario}
 	return render_to_response ('home/accesorios.html', ctx, context_instance = RequestContext(request))
 
@@ -108,7 +112,7 @@ def sabias_view(request, pagina):
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
-
+			HttpResponseRedirect('/sabias/page/1')
 	ctx = {'lista': items, 'formu':formulario}
 	return render_to_response ('home/sabias.html', ctx, context_instance = RequestContext(request))
 
@@ -160,24 +164,26 @@ def contacto_view(request):
 		formulario = contacto_form(request.POST)
 		if formulario.is_valid():
 			envio_mail(formulario)
-		
+			HttpResponseRedirect('contacto')
 	ctx = {'form':formulario}
 	
 	return render_to_response('home/contacto.html', ctx, context_instance = RequestContext(request))
 #fin vista
 
 #funcion que cargan las otras vista para el envio de correos al gmail
+
 def envio_mail(formulario):
 	
-	email 		= formulario.cleaned_data=['correo']
-	nombre 	 	= formulario.cleaned_data=['nombre']
-	asunto  	= formulario.cleaned_data=['asunto']
-	descripcion = formulario.cleaned_data=['descripcion']
+	email 		= formulario.cleaned_data['correo']
+	nombre 	 	= formulario.cleaned_data['nombre']
+	asunto  	= formulario.cleaned_data['asunto']
+	descripcion = formulario.cleaned_data['descripcion']
 	to_admin = 'datutalcha3@misena.edu.co'
-	html_content = "Informacion recibida de %s <br> ----Mensaje--- <br> %s"%(nombre, asunto)
-	msg = EmailMultiAlternatives(asunto, html_content, 'from@server.com', [to_admin])
+	html_content = "Informacion recibida de %s <br> ----Asunto--- <br> %s <br>----Descripcion---:</br><br>%s</br> <br>Correo de usuario: %s </br>"%(nombre, asunto,descripcion,email)
+	msg = EmailMultiAlternatives('Contacto', html_content, 'from@server.com', [to_admin])
 	msg.attach_alternative(html_content, 'text/html')
 	msg.send()
+	
 
 #bloque login-logout
 def login_view(request):

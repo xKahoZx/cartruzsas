@@ -97,3 +97,39 @@ def edit_slider_view(request, id_item):
 		formulario = add_slider_form(instance = item)
 	ctx = {'form':formulario}
 	return render_to_response('productos/edit_slider.html', ctx , context_instance = RequestContext(request))
+
+
+def edit_labor_social(request):
+	item = Labor_Social.objects.get(pk = 1)	
+	imagenes = Imagen_Labor_Social.objects.all()
+	if request.method == "POST":
+		formulario = edit_labor_social_form(request.POST, request.FILES,instance = item)
+		if formulario.is_valid():
+			edit = formulario.save(commit = False)
+			edit.save()			
+			return HttpResponseRedirect('/')
+	else:
+		formulario = edit_labor_social_form(instance = item)
+	ctx = {'form':formulario, 'img': imagenes}
+	return render_to_response('productos/edit_labor_social.html', ctx , context_instance = RequestContext(request))
+
+def edit_imagen_Labor_Social(request, id_img):
+	img = Imagen_Labor_Social.objects.get(pk = id_img)
+	if request.method == "POST":
+		formulario = edit_labor_imagen_social_form(request.POST, request.FILES,instance = img)
+		if formulario.is_valid():
+			edit = formulario.save(commit = False)
+			edit.save()			
+			return HttpResponseRedirect('/edit/labor')
+	else:
+		formulario = edit_labor_imagen_social_form(instance = img)
+	ctx = {'form':formulario}
+	return render_to_response('productos/edit_labor_social_img.html', ctx , context_instance = RequestContext(request))
+
+
+
+
+
+
+
+

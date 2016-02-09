@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="icon" type="image/png" href="/media/images/logo_cartruz.png" />
+		<link rel="icon" type="image/png" href="/media/images/logo.png" />
 		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <link type="text/css" rel="stylesheet" href="/media/materialize/css/materialize.css"  media="screen,projection"/>
 	    <link rel="stylesheet" type="text/css" href="/media/css/styles.css">
@@ -14,7 +14,7 @@
 		<div class="container"> 
 			<header>
 				<div class="row">
-			    	<nav class="top-nav z-depth-2 ">
+			    	<nav class=" z-depth-2 ">
 			       		
 			         	<div class="nav-wrapper">
 				         	<div class="container"><a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a></div>
@@ -23,8 +23,8 @@
 						        	<li><a href="{%url 'vista_inicio'%}">Inicio</a></li>
 									<li><a href="/productos/page/1">Productos</a></li>
 									<li><a href="/accesorios/page/1">Accesorios</a></li>
-									<li><a href="/sabias/page/1">Sabias Que...</a></li>
 									<li><a href="{%url 'vista_sobre_nosotros' %}">Sobre Nosotros</a></li>
+									<li><a href="/sabias/page/1">Sabias Que...</a></li>
 									{% if user.is_authenticated %}
 										<li><a href="{% url 'vista_logout' %}">Cerrar Sesion</a></li>
 									{% endif %}
@@ -55,14 +55,17 @@
 							{%endblock%}
 						</div>
 						<div class="col l3 formulario" >
-							<img src="/media/images/logo.jpg" class="responsive-img">
+							<img src="/media/images/logo_cartruz.png" class="responsive-img">
 							<h5 align="center">Contactanos</h5>
-							<form action="." method="POST">
+							<form action="." method="POST" >
 								{%csrf_token%}
 								{{formu.as_p}}
-
-								<button class="btn waves-effect waves-light" type="submit" ><b>Enviar</b><i class="material-icons right">email</i></button>
-								<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
+								<div class="col s6">
+									<button class="btn waves-effect waves-light" type="submit" ><b>Enviar</b><i class="material-icons right">email</i></button>
+								</div>
+								<div class="col s6">
+									<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>
+								</div>
 							</form>
 
 						</div>
@@ -78,6 +81,7 @@
 
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	    <script type="text/javascript" src="/media/materialize/js/materialize.min.js"></script>
+
 	    <script type="text/javascript"> 
 	    	$(document).ready(function() {$('select').material_select();  });
 	    	$(".button-collapse").sideNav();
@@ -86,42 +90,45 @@
     		$(document).ready(function(){$('.carousel').carousel();});
     		$(document).ready(function(){$('.materialboxed').materialbox();})
         	$('.carousel').carousel('next', [1]);
-    	
+    		$("#slideshow").craftyslide();
 	    </script>
 	</body>
 	<footer class="page-footer">
         <div class="container">
             <div class="row">
-	            <div class="col l6 s12">
-	            	<div class="col s5 m6">
-	            		<h5 class="white-text">Links</h5>
-	            		<ul>
-	            			<li><a href="{% url  'vista_inicio' %}" class="white-text">Inicio</a></li>
-		            		<li><a href="/productos/page/1/" class="white-text">Productos</a></li>
-		            		<li><a href="/accesorios/page/1/" class="white-text">Accesorios</a></li>
-		            		<li><a href="/sabias/page/1/" class="white-text">Sabias Que...</a></li>
-		            		<li><a href="{% url  'vista_sobre_nosotros' %}" class="white-text">Sobre nosotros</a></li>
-	            		</ul>
+	            <div class="col l6 s12 m7">
+	            	<div class="col s5 m5 l6">
+	            		<h5 class="white-text">Menú</h5>
+	            		
+	            			<li class="white-text"> <a href="{% url  'vista_inicio' %}" class="white-text">Inicio</a></li>
+		            		<li class="white-text"><a href="/productos/page/1/" class="white-text">Productos</a></li>
+		            		<li class="white-text"><a href="/accesorios/page/1/" class="white-text">Accesorios</a></li>
+		            		<li class="white-text"><a href="/sabias/page/1/" class="white-text">Sabias Que...</a></li>
+		            		<li class="white-text"><a href="{% url  'vista_sobre_nosotros' %}" class="white-text">Sobre nosotros</a></li>
+	            		
 	            	</div>
-	            	<div class="col s7 m6">
+	            	<div class="col s7 m7 l6">
 	            		<h5 class="white-text">Contacto</h5>
-	            		<p class="white-text"><i class="material-icons left ">contact_phone</i> 311-394-0873</p>
-	            		<p class="white-text"><i class="material-icons left ">mail</i> contacto@cartruzsas.com</p>
-	            		<p class="white-text"><i class="material-icons left ">location_on
-						</i><a class="white-text" target="_blank" href="https://www.google.com.co/maps/place/Campanario+Centro+Comercial/@2.4591605,-76.5956824,17z/data=!4m5!1m2!2m1!1scentro+comercial!3m1!1s0x0000000000000000:0xa749ba51fed22c24?hl=es-419">Ver ubicacion</a></p>
+	            	
+	            			<li class="white-text margen-enlaces"><i class="material-icons enlaces">contact_phone</i> 311-394-0873</li>
+	            			<li class="white-text margen-enlaces"><i class="material-icons  enlaces">mail</i> contacto@cartruzsas.com</li>
+	            			<li class="white-text margen-enlaces"><i class="material-icons enlaces">location_on
+							</i><a class="white-text" target="_blank" href="https://www.google.com.co/maps/place/Campanario+Centro+Comercial/@2.4591605,-76.5956824,17z/data=!4m5!1m2!2m1!1scentro+comercial!3m1!1s0x0000000000000000:0xa749ba51fed22c24?hl=es-419">Ver ubicacion</a></li>    
+							<li class="white-text margen-enlaces"><img class="logo_facebook enlaces" src="/media/images/iconos_enlaces/logo_facebook.png"><a class="white-text" href="https://www.facebook.com/Cartruz-Sas-Criadores-De-Avestruces-947955651932732/?fref=ts">Facebook</a></li>
+	            	
 
 	            	</div>
 	            	
 	          
 	            </div>
-	            <div class="col l5 offset-l1 s12">
+	            <div class="col l5 offset-l1 s12 m5 l5	">
 	                <h5 class="white-text">Patrocinadores</h5>
 	                <ul>
 		                <li >
-		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/enlaces/logo_sena.jpg"></a>
-		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/enlaces/logo_fonade.png"></a>
-		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/enlaces/logo_republica.jpg"></a>
-		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-rectangular" src="/media/images/enlaces/logo_fondo_emprender.jpg"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/iconos_enlaces/logo_sena.jpg"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/iconos_enlaces/logo_fonade.png"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-redondo" src="/media/images/iconos_enlaces/logo_republica.jpg"></a>
+		                	<a target="_blank" class="white-text text-lighten-3" href="#!"><img class="img-enlace-rectangular" src="/media/images/iconos_enlaces/logo_fondo_emprender.jpg"></a>
 		                </li>		                
 	                </ul>
 	            </div>

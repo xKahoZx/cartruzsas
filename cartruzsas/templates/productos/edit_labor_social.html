@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{%block title%}
+	Editar Labor Social
+{% endblock %}
+
+{%block content_aux%}
+	<h5 align="center"><b>Editar Labor Social</b></h5>
+	{% if user.is_authenticated %}
+		<div align="center">
+			<form action="." method="POST" enctype = "multipart/form-data">				
+				{%csrf_token%}
+				{{form.as_p}}
+				<p>Imagenes</p>
+			
+				{% for p in img%}
+					<div class="col s4">
+						<h6><b>{{p.nombre}}</b></h6>
+						<img src="/media/{{p.imagen}}">
+						<a href="/edit/img/{{p.id}}">Editar</a>
+					</div>
+					{% endfor %}
+				<button class="btn waves-effect waves-light" type="submit" ><b>Guardar</b><i class="material-icons right">note_add</i></button>
+				<button class="btn waves-effect waves-light" type="reset" ><b>Limpiar</b><i class="material-icons right">loop</i></button>	
+			</form>
+
+			
+		</div>
+	{% else %}
+		<h5>Debes estar autenticado para poder editar un producto</h5>
+	{% endif %}
+{%endblock %}

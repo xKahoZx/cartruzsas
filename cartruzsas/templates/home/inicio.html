@@ -1,58 +1,41 @@
 {% extends 'base.html' %}
  
 {% block title %}
-    Inicio
+		Inicio
 {% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="slider">
-        <ul class="slides">
-          <li>
-            <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
-            <div class="caption center-align">
-              <h3>This is our big Tagline!</h3>
-              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            </div>
-          </li>
-          <li>
-            <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
-            <div class="caption left-align">
-              <h3>Left Aligned Caption</h3>
-              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            </div>
-          </li>
-          <li>
-            <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
-            <div class="caption right-align">
-              <h3>Right Aligned Caption</h3>
-              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            </div>
-          </li>
-          <li>
-            <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
-            <div class="caption center-align">
-              <h3>This is our big Tagline!</h3>
-              <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-            </div>
-          </li>
-        </ul>
-      </div>
+	<div class="row">
+		<div class="slider ">
+		    <ul class="slides z-depth-2">
+		    	{% for p in sliders%}
+			      	<li>
+				        <img src="/media/{{p.imagen}}" style="background-image: url('/media/{{p.imagen}}')"> <!-- random image -->
+				        <div class="caption left-align">
+				          	<h3>{{p.titulo}}</h3>
+				          	<h5 class="light grey-text text-lighten-3">{{p.texto}}</h5>
+				        </div>
+			      	</li>
+		      	{% endfor%}
+		    </ul>
+		</div>
+		{% if user.is_authenticated %}
+			<a href="{% url 'vista_slider' %}">Listar items</a>
+		{% endif %}
+	</div>
 
-
-  </div>
-  <br>
-  <div class="row">
-    <div class="carousel">
-    
-      <h6>CARTRUZ SAS esta comprometido con la comunidad del Municipio del Patía, especifícamente con la vereda Potrerillo</h6>
-  <br>
-      <br>
-      <a class="carousel-item" href="#one!"><img src="/media/images/carousel/imagen_2.jpg"></a>
-      <a class="carousel-item" href="#two!"><img src="/media/images/carousel/imagen_3.jpg"></a>
-      <a class="carousel-item" href="#three!"><img src="/media/images/carousel/imagen_4.jpg"></a>
-      <a class="carousel-item" href="#four!"><img src="/media/images/carousel/imagen_6.jpg"></a>
-      <a class="carousel-item" href="#five!"><img src="/media/images/carousel/imagen_7.jpg"></a>
-    </div>
-  </div>
+	<div class="row " >		
+		<h6><b>Labor social</b></h6>
+		<p>{{carousel.encabezado}}</p>
+		<div class="carousel">
+			{% for c in imagenes %}
+				<a class="carousel-item "><img class="z-depth-2 " src="/media/{{c.imagen}}"></a>
+			{% endfor %}
+		</div>
+		{% if user.is_authenticated %}
+			<a href="/edit/labor/">Editar</a>
+		{% endif%}
+	</div>
 {% endblock %}
+
+

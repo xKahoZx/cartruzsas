@@ -3,14 +3,7 @@
        	display: none;
 
     	}
-	}
-
-@media only screen and (max-width: 600px) {
-    .imagen {
-       	display: none;
-
-    	}
-    .img-enlace-redondo{
+     .img-enlace-redondo{
       width: 70px !important;    
       height: 60px !important;    
     }  
@@ -18,6 +11,14 @@
       width: 110px !important;
       height: 60px !important;
     }
+	}
+
+@media only screen and (max-width: 600px) {
+    .imagen {
+       	display: none;
+
+    	}
+   
 	}
 
 .paginacion{
@@ -49,3 +50,18 @@
   width: 160px;
 }
  
+.logo_facebook{
+  width: 24px !important;
+  height: 24px !important;
+
+}
+
+.enlaces{
+  vertical-align: middle;
+  margin-right: 4%;
+}
+
+.margen-enlaces{
+  margin-top: 1%;
+}
+
