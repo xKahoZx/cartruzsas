@@ -1,7 +1,7 @@
 # Django settings for cartruzsas project.
 
-DEBUG = False
-#TEMPLATE_DEBUG = DEBUG
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 import os
 
 ADMINS = (
