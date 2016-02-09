@@ -14,7 +14,7 @@ from django.core.paginator import Paginator, EmptyPage, InvalidPage
 #en esta vista inicio_view cargo las imagenes correspondientes a mostar en el slider.
 def inicio_view(request):	
 	items 		= Slider.objects.filter(estado = "Activo")
-	carousel	= Labor_Social.objects.get(id = 1)
+	carousel	= Labor_Social.objects.get(pk = 1)
 	imagenes	= Imagen_Labor_Social.objects.all()
 	formulario = contacto_form()
 	if request.method == "POST":
